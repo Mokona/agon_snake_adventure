@@ -2,6 +2,8 @@
 #include <mos.h>
 #include <vdp.h>
 
+char directions[4];
+
 void main(void)
 {
     vdp_init();
@@ -44,12 +46,39 @@ void main(void)
     sprite_show();
     sprite_activate(3);
 
-    for (int x = 0; x < 300; x+=2)
+    for (int x = 0; x < 200; x+=20)
     {
         sprite_select(0);
         sprite_move_to(x, 100);
         sprite_update();
 
         vdp_vsync();
+    }
+
+    char previous_key = 0;
+    char previous_pressed = 0;
+    while(previous_key != 125 || previous_pressed != 1)
+    {
+        vdp_vsync();
+        char key = vdp_get_vkey();
+        char pressed = vdp_get_vkey_pressed();
+
+        if (previous_key != key || previous_pressed != pressed)
+        {
+            clear_screen();
+            if (key == 156) directions[0] = pressed;
+            if (key == 152) directions[1] = pressed;
+            if (key == 154) directions[2] = pressed;
+            if (key == 150) directions[3] = pressed;
+
+            for (int i=0; i<4;++i)
+            {
+                putchar('0' + directions[i]);
+            }
+            putchar('\n');
+
+            previous_key = key;
+            previous_pressed = pressed;
+        }
     }
 }
