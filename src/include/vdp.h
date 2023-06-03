@@ -18,3 +18,5 @@ void sprite_update(void);
 
 extern void vdp_init(void);
 extern void vdp_vsync(void);
+extern char vdp_get_vkey(void);
+extern char vdp_get_vkey_pressed(void);
