@@ -2,10 +2,6 @@
 
     .globl      _vdp_init
     .globl      _vdp_vsync
-    .globl      _frame_ptr
-    .globl      _keycode_ptr
-    .globl      _key_up
-    .globl      _vk_code
 
 mos_sysvars = 0x08
 
@@ -56,10 +52,10 @@ vdp_vsync_lp:
     .area       _BSS
 
 _frame_ptr:
-frame_ptr:      .db  0,0,0
+frame_ptr:      .db 0,0,0
 _keycode_ptr:
-keycode_ptr:    .db  0,0,0
+keycode_ptr:    .db 0,0,0
 _vk_code:
-vk_code:        .db  0,0,0
+vk_code:        .db 0,0,0
 _key_up:
-key_up:         .db  0,0,0
+key_up:         .db 0,0,0
