@@ -39,7 +39,7 @@ init:
     .db 0x5b
     push iy ;; .LIL
 
-    call	gsinit
+    call gsinit
     call _main
 
 

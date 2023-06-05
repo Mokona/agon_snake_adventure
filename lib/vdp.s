@@ -8,6 +8,7 @@
 mos_sysvars = 0x08
 
 _vdp_init:
+    push        ix
     ld          a,#mos_sysvars
     rst         0x08         
 
@@ -35,6 +36,7 @@ _vdp_init:
     ld          (frame_ptr),ix
     .db 0x04    ; Hack to fix the previous ADL address
 
+    pop         ix
     ret
 
 _vdp_vsync:
