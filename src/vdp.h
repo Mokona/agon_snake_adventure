@@ -1,3 +1,6 @@
+#ifndef SNAKE_VDP_H
+#define SNAKE_VDP_H
+
 void clear_screen(void);
 void mode(int m);
 void color(char c);
@@ -20,3 +23,5 @@ extern void vdp_init(void);
 extern void vdp_vsync(void);
 extern char vdp_get_vkey(void);
 extern char vdp_get_vkey_pressed(void);
+
+#endif
