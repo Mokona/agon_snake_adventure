@@ -31,7 +31,6 @@ _vdp_init:
     ld          (key_up),hl
     .db 0x04    ; Hack to fix the previous ADL address
 
-    .db 0x5b    ; LIL prefix
     .db 0x5b ;; LIL prefix
     ld          (frame_ptr),ix
     .db 0x04    ; Hack to fix the previous ADL address
@@ -44,12 +43,12 @@ _vdp_vsync:
     ld          hl,(frame_ptr)
     .db 0x04    ; Hack to fix the previous ADL address
 
-    .db 0x5b    ; LIL prefix
+    .db 0x49    ; L
     ld          a,(hl)
 vdp_vsync_lp:
-    .db 0x5b    ; LIL prefix
+    .db 0x49    ; L prefix
     cp          (hl)
-    ; jr          z,vdp_vsync_lp
+    jr          z,vdp_vsync_lp
 
     ; Read key locally
     .db 0x5b    ; LIL prefix
@@ -79,7 +78,6 @@ _vdp_get_vkey_pressed:
     ld          a,(_key_pressed)
     ld          l,a
     ret
-
 
     .area       _BSS
 
