@@ -1,6 +1,6 @@
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
-SRC=$(call rwildcard,src,*.h) src/main.c src/vdp.c src/keys.c
+SRC=$(call rwildcard,src,*.h) src/main.c src/vdp.c src/keys.c src/snake.c
 INC=$(call rwildcard,include,*.h) $(call rwildcard,src,*.h)
 MOSLIBSRC=$(call rwildcard,include,*.s)
 
@@ -29,7 +29,8 @@ a.bin: $(SRC) $(INC) $(CRT) $(MOSLIB)
 		$(CC) $(CFLAGS) -c $(MOSLIB) src/main.c -o out/main.rel
 		$(CC) $(CFLAGS) -c $(MOSLIB) src/vdp.c -o out/vdp.rel
 		$(CC) $(CFLAGS) -c $(MOSLIB) src/keys.c -o out/keys.rel
-		$(LD) $(CLINK) $(CRT) $(MOSLIB) out/main.rel out/vdp.rel out/keys.rel -o out/a.ihx
+		$(CC) $(CFLAGS) -c $(MOSLIB) src/snake.c -o out/snake.rel
+		$(LD) $(CLINK) $(CRT) $(MOSLIB) out/main.rel out/vdp.rel out/keys.rel out/snake.rel -o out/a.ihx
 		$(CLD) -nf out/a.lk
 		$(OBJCPY) -I ihex -O binary out/a.ihx main.bin
 
