@@ -3,10 +3,14 @@
 
 #include "vdp.h"
 #include "keys.h"
+#include "board.h"
 
 void main(void)
 {
     vdp_init();
+    initialize_board(10, 10);
+
+#if 0
     mode(1);
 
     static int count = 60;
@@ -27,5 +31,5 @@ void main(void)
             putchar('\n');
         }
     }
+#endif
 }
-
